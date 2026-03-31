@@ -79,8 +79,15 @@ func main() {
 					continue
 				}
 				attempt++
+				if attempt == 10 {
+					fmt.Println("Number of attempts exhausted")
+					break
+				}
 
-				Easy(val, num)
+				Easy(val, num, attempt)
+				if val == num {
+					break
+				}
 			}
 
 		case 2:
