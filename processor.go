@@ -62,3 +62,8 @@ func Hard(n, num, attempt int) {
 		fmt.Printf("You have %d more attempts\n", 3-attempt)
 	}
 }
+✅ Replace Easy/Medium/Hard with ONE function
+✅ Create playGame(maxAttempts)
+✅ Move num inside the game
+
+👉 Your code quality will jump immediately.
