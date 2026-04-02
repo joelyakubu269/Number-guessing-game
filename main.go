@@ -70,52 +70,17 @@ func main() {
 
 			fmt.Println(`Great! You have selected the Easy difficulty level.
 				Let's start the game!`)
-			no := 0
+			PlayGame(10)
 
 		case 2:
 			fmt.Println(`Great! You have selected the Medium difficulty level.
 				Let's start the game!`)
-			attempt := 0
-			for {
-				fmt.Println("Enter your guess : ")
-				val, err := readInput()
-				if err != nil {
-					fmt.Println("Enter only valid numbers")
-					continue
-				}
-				attempt++
-				if attempt == 5 {
-					fmt.Println("Number of attempts exhausted")
-					break
-				}
-				Medium(val, num, attempt)
-				if val == num {
-					break
-				}
-
-			}
+			PlayGame(5)
 
 		case 3:
 			fmt.Println(`Great! You have selected the Hard difficulty level.
 				Let's start the game!`)
-			attempt := 0
-			for {
-				fmt.Println("Enter your guess : ")
-				val, err := readInput()
-				if err != nil {
-					fmt.Println("Enter only valid numbers")
-					continue
-				}
-				attempt++
-				if attempt == 3 {
-					fmt.Println("Number of attempts exhausted")
-					break
-				}
-				Hard(val, num, attempt)
-				if val == num {
-					break
-				}
-			}
+			PlayGame(3)
 		default:
 			fmt.Println("Unknown choice enter a valid selection")
 		}

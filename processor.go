@@ -34,26 +34,12 @@ func readInput() (int, error) {
 //			fmt.Printf("You have %d more attempts\n", 10-attempt)
 //		}
 //	}
-func Medium(n, num int, attempt func(int)) {
-	if n == num {
-		fmt.Printf("Congratulations! You guessed the correct number in %d attempts\n .", attempt(int))
-
-	}
-	if n > num {
-		fmt.Printf("Incorrect! The number is less than %d\n", n)
-		fmt.Printf("You have %d more attempts\n", no-attempt())
-	}
-	if n < num {
-		fmt.Printf("Incorrect! The number is greater than %d\n", n)
-		fmt.Printf("You have %d more attempts\n", no-attempt())
-	}
-}
 
 // ✅ Replace Easy/Medium/Hard with ONE function
 // ✅ Create playGame(maxAttempts)
 // ✅ Move num inside the game
 
-func PlayGame(maxAttempts int) int {
+func PlayGame(maxAttempts int) {
 	attempts := 0
 	for {
 		fmt.Println("Enter your guess : ")
@@ -68,9 +54,19 @@ func PlayGame(maxAttempts int) int {
 			break
 		}
 		if val == num {
+			fmt.Printf("Congratulations! You guessed the correct number in %d attempts\n .", attempts)
+
 			break
+		}
+		if val > num {
+			fmt.Printf("Incorrect! The number is less than %d\n", val)
+			fmt.Printf("You have %d more attempts\n", maxAttempts-attempts)
+		}
+		if val < num {
+			fmt.Printf("Incorrect! The number is greater than %d\n", val)
+			fmt.Printf("You have %d more attempts\n", maxAttempts-attempts)
 		}
 
 	}
-	return attempts
+
 }
