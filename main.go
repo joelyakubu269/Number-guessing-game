@@ -70,25 +70,7 @@ func main() {
 
 			fmt.Println(`Great! You have selected the Easy difficulty level.
 				Let's start the game!`)
-			attempt := 0
-			for {
-				fmt.Println("Enter your guess : ")
-				val, err := readInput()
-				if err != nil {
-					fmt.Println("Enter only valid numbers")
-					continue
-				}
-				attempt++
-				if attempt == 10 {
-					fmt.Println("Number of attempts exhausted")
-					break
-				}
-
-				Easy(val, num, attempt)
-				if val == num {
-					break
-				}
-			}
+			no := 0
 
 		case 2:
 			fmt.Println(`Great! You have selected the Medium difficulty level.
