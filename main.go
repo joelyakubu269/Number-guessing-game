@@ -31,7 +31,8 @@
 
 //     Implement a hint system that provides clues to the user if they are stuck.
 
-//     Keep track of the user's high score (i.e., the fewest number of attempts it took to guess the number under a specific difficulty level).
+//Keep track of the user's high score (i.e., the fewest number of attempts it took to guess the number
+// under a specific difficulty level).
 
 package main
 
@@ -40,12 +41,12 @@ import (
 	"fmt"
 	"math/rand"
 	"os"
+	"strings"
 	"time"
 )
 
 var reader = bufio.NewReader(os.Stdin)
 var r = rand.New(rand.NewSource(time.Now().UnixNano()))
-var num = r.Intn(100) + 1
 
 func main() {
 	fmt.Println("Welcome to the Number Guessing Game!")
@@ -81,8 +82,16 @@ func main() {
 			fmt.Println(`Great! You have selected the Hard difficulty level.
 				Let's start the game!`)
 			PlayGame(3)
+
 		default:
 			fmt.Println("Unknown choice enter a valid selection")
+		}
+		fmt.Println("Do you wish to continue (yes/no): ")
+		input1, err := reader.ReadString('\n')
+		input1 = strings.TrimSpace(input1)
+		if strings.ToLower(input1) != "yes" {
+			fmt.Println("Goodbye")
+			break
 		}
 	}
 }

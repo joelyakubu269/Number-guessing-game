@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+	"time"
 )
 
 func readInput() (int, error) {
@@ -41,6 +42,11 @@ func readInput() (int, error) {
 
 func PlayGame(maxAttempts int) {
 	attempts := 0
+	bufferScore := []int{}
+
+	num := r.Intn(100) + 1
+
+	start := time.Now()
 	for {
 		fmt.Println("Enter your guess : ")
 		val, err := readInput()
@@ -48,25 +54,59 @@ func PlayGame(maxAttempts int) {
 			fmt.Println("Enter only valid numbers")
 			continue
 		}
+
 		attempts++
-		if attempts == maxAttempts {
+		if attempts >= maxAttempts {
 			fmt.Println("Number of attempts exhausted")
 			break
 		}
 		if val == num {
-			fmt.Printf("Congratulations! You guessed the correct number in %d attempts\n .", attempts)
+			duration := time.Since(start)
+			fmt.Printf("Congratulations! You guessed the correct number in %d attempts.\n ", attempts)
+			fmt.Printf("you guessed the answer in %.2f seconds\n", duration.Seconds())
+			highestScore := maxAttempts - attempts
+			bufferScore = append(bufferScore, highestScore)
+			n := (HighestScore(bufferScore, highestScore))
+			fmt.Println(n)
 
 			break
 		}
 		if val > num {
 			fmt.Printf("Incorrect! The number is less than %d\n", val)
 			fmt.Printf("You have %d more attempts\n", maxAttempts-attempts)
+			Hint(num)
+
 		}
 		if val < num {
 			fmt.Printf("Incorrect! The number is greater than %d\n", val)
 			fmt.Printf("You have %d more attempts\n", maxAttempts-attempts)
+			Hint(num)
+
 		}
 
 	}
 
+}
+func Hint(num int) {
+	if num%2 == 0 && num%5 == 0 {
+		fmt.Println("The number is even and divisible by 5")
+	}
+	if num%2 == 0 {
+		fmt.Println("The number is even")
+	} else {
+		fmt.Println("The number is odd")
+	}
+	if num%3 == 0 {
+		fmt.Println("The number is divisible by 3")
+	}
+
+}
+func HighestScore(container []int, highestScore int) int {
+	newHighestScore := 0
+	for _, r := range container {
+		if r < highestScore {
+			newHighestScore = r
+		}
+	}
+	return newHighestScore
 }
